@@ -1,6 +1,6 @@
 module Turbotlib
   def self.log(message)
-    puts message
+    $stderr.puts message
   end
 
   def self.data_dir

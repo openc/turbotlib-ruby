@@ -5,7 +5,7 @@ describe Turbotlib do
     it "should print message" do
       expect {
         Turbotlib.log("hi")
-      }.to output("hi\n").to_stdout
+      }.to output("hi\n").to_stderr
     end
   end
 
