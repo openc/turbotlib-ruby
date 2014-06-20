@@ -2,7 +2,7 @@ $:.unshift File.expand_path("../lib", __FILE__)
 require "turbotlib/version"
 
 Gem::Specification.new do |gem|
-  gem.name    = "turbotlib-ruby"
+  gem.name    = "turbotlib"
   gem.version = TurbotLib::VERSION
 
   gem.author      = "Turbot"
