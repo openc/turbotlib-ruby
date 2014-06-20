@@ -11,8 +11,8 @@ describe Turbotlib do
 
   describe "data_dir" do
     context "when developing" do
-      it "should return data/" do
-        expect(Turbotlib.data_dir).to eq("data/")
+      it "should return data" do
+        expect(Turbotlib.data_dir).to eq("data")
       end
     end
 
@@ -21,8 +21,8 @@ describe Turbotlib do
         allow(ENV).to receive(:[]).with("MORPH_URL").and_return("something")
       end
 
-      it "should return /data/" do
-        expect(Turbotlib.data_dir).to eq("/data/")
+      it "should return /data" do
+        expect(Turbotlib.data_dir).to eq("/data")
       end
     end
   end

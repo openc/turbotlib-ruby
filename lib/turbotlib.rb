@@ -5,9 +5,9 @@ module Turbotlib
 
   def self.data_dir
     if in_production?
-      "/data/"
+      "/data"
     else
-      "data/"
+      "data"
     end
   end
 
