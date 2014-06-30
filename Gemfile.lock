@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    turbotlib-ruby (0.0.1)
+    turbotlib (0.0.1)
       openc_bot (= 0.0.11)
 
 GEM
@@ -68,4 +68,4 @@ DEPENDENCIES
   rake (>= 0.8.7)
   rr (~> 1.0.2)
   rspec (>= 2.0)
-  turbotlib-ruby!
+  turbotlib!

@@ -18,5 +18,4 @@ Gem::Specification.new do |gem|
   end
 
   gem.required_ruby_version = '>=1.9.2'
-  gem.add_dependency "openc_bot", "0.0.11"
 end
