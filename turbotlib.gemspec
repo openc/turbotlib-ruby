@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.license     = "MIT"
 
   # use git to list files in main repo
-  gem_files = %x{ git ls-files }.split("\n").select do |d|
+  gem.files = %x{ git ls-files }.split("\n").select do |d|
     d =~ %r{^(License|README|lib/|spec/|test/)}
   end
 
