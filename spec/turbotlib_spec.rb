@@ -1,4 +1,5 @@
 require 'turbotlib'
+require 'fileutils'
 
 describe Turbotlib do
   describe "log" do
@@ -11,8 +12,17 @@ describe Turbotlib do
 
   describe "data_dir" do
     context "when developing" do
+      after do
+        FileUtils.rm_rf("data")
+      end
+
       it "should return data" do
         expect(Turbotlib.data_dir).to eq("data")
+      end
+
+      it "should create data directory" do
+        Turbotlib.data_dir
+        expect(File.exists?("data")).to eq(true)
       end
     end
 
@@ -23,6 +33,10 @@ describe Turbotlib do
 
       it "should return /data" do
         expect(Turbotlib.data_dir).to eq("/data")
+      end
+
+      it "should not create data directory" do
+        expect(File.exists?("data")).to eq(false)
       end
     end
   end

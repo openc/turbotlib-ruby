@@ -8,18 +8,8 @@ module Turbotlib
   end
 
   def data_dir
-    if in_production?
-      "/data"
-    else
-      "data"
-    end
-  end
-
-  def set_up_data_dir
-    begin
-      Dir.mkdir(data_dir)
-    rescue Errno::EEXIST
-    end
+    set_up_data_dir
+    data_dir_location
   end
 
   def save_var(key, val)
@@ -39,7 +29,6 @@ module Turbotlib
   end
 
   def get_vars
-    set_up_data_dir
     begin
       YAML.load_file(vars_path)
     rescue Errno::ENOENT
@@ -48,11 +37,25 @@ module Turbotlib
   end
 
   def save_vars(vars)
-    set_up_data_dir
     File.open(vars_path, 'w') {|f| YAML.dump(vars, f)}
   end
 
   def vars_path
     "#{data_dir}/_vars.yml"
+  end
+
+  def data_dir_location
+    if in_production?
+      "/data"
+    else
+      "data"
+    end
+  end
+
+  def set_up_data_dir
+    begin
+      Dir.mkdir(data_dir_location)
+    rescue Errno::EEXIST
+    end
   end
 end
