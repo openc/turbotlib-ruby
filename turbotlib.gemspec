@@ -18,4 +18,5 @@ Gem::Specification.new do |gem|
   end
 
   gem.required_ruby_version = '>=1.9.2'
+  gem.add_dependency "scraperwiki", "3.0.2"
 end
