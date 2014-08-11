@@ -45,7 +45,8 @@ class Turbotlib
     end
 
     def save_vars(vars)
-      File.open(vars_path, 'w') {|f| YAML.dump(vars, f)}
+      yaml = YAML.dump(vars, f)
+      File.write(vars_path, yaml)
     end
 
     def vars_path
