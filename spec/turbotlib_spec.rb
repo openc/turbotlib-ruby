@@ -40,4 +40,44 @@ describe Turbotlib do
       end
     end
   end
+
+  describe "sources_dir" do
+    context "when developing" do
+      after do
+        FileUtils.rm_rf("sources")
+      end
+
+      it "should return sources" do
+        expect(Turbotlib.sources_dir).to eq("sources")
+      end
+
+      it "should create sources directory" do
+        Turbotlib.sources_dir
+        expect(File.exists?("sources")).to eq(true)
+      end
+    end
+
+    context "when running in morph" do
+      context "and not an admin" do
+        before do
+          allow(Turbotlib).to receive(:in_production?).and_return(true)
+        end
+
+        it "should raise exception" do
+          expect{Turbotlib.sources_dir}.to raise_error
+        end
+      end
+
+      context "and an admin" do
+        before do
+          allow(Turbotlib).to receive(:in_production?).and_return(true)
+          allow(Turbotlib).to receive(:is_admin?).and_return(true)
+        end
+
+        it "should return /sources" do
+          expect(Turbotlib.sources_dir).to eq("/sources")
+        end
+      end
+    end
+  end
 end

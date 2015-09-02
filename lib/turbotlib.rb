@@ -10,8 +10,15 @@ class Turbotlib
     end
 
     def data_dir
-      set_up_data_dir
-      data_dir_location
+      path_to("data")
+    end
+
+    def sources_dir
+      if in_production? && !is_admin?
+        raise "Only admins are permitted to write to `sources_dir`"
+      else
+        path_to("sources")
+      end
     end
 
     def save_var(key, val)
@@ -36,6 +43,10 @@ class Turbotlib
       !!ENV['MORPH_URL']
     end
 
+    def is_admin?
+      ENV['USER_ROLES'].to_s.split(",").include?("admin")
+    end
+
     def get_vars
       begin
         YAML.load_file(vars_path)
@@ -53,17 +64,19 @@ class Turbotlib
       "#{data_dir}/_vars.yml"
     end
 
-    def data_dir_location
+    def path_to(dir)
       if in_production?
-        "/data"
+        location = "/#{dir}"
       else
-        "data"
+        location = dir
+        set_up_dir(location)
       end
+      location
     end
 
-    def set_up_data_dir
+    def set_up_dir(location)
       begin
-        Dir.mkdir(data_dir_location)
+        Dir.mkdir(location)
       rescue Errno::EEXIST
       end
     end
