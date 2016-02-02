@@ -1,12 +1,13 @@
-require 'turbotlib'
-require 'fileutils'
-
 require "simplecov"
 require "coveralls"
 SimpleCov.formatter = Coveralls::SimpleCov::Formatter
 SimpleCov.start do
   add_filter "spec"
 end
+
+require 'fileutils'
+
+require 'turbotlib'
 
 describe Turbotlib do
   describe "log" do
