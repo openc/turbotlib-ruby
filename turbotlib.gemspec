@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "scraperwiki", "3.0.2"
   gem.add_development_dependency "coveralls"
-  gem.add_development_dependency "debugger"
   gem.add_development_dependency "excon"
   gem.add_development_dependency "json"
   gem.add_development_dependency "rake", ">= 0.8.7"
