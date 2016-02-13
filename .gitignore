@@ -1,7 +1,7 @@
-.rbenv-gemsets
-.ruby-version
-.gems
-/coverage
+*.gem
+.bundle
+.yardoc
+coverage
 Gemfile.lock
+doc/*
 pkg/*
-*~
