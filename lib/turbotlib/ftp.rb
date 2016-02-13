@@ -58,7 +58,7 @@ class Turbotlib
 
       path = File.join(root_path, pwd, remotefile)
 
-      if Env.development? && File.exist?(path)
+      if !Turbotlib.in_production? && File.exist?(path)
         File.open(path)
       else
         FileUtils.mkdir_p(File.dirname(path))
