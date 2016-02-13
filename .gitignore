@@ -5,3 +5,4 @@ coverage
 Gemfile.lock
 doc/*
 pkg/*
+/_cache
