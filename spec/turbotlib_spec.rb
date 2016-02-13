@@ -12,12 +12,12 @@ describe Turbotlib do
   describe '.data_dir' do
     context 'when developing' do
       after do
-        FileUtils.rm_rf('data')
+        Dir.rmdir('data')
       end
 
       it 'returns "data" and creates the directory' do
         expect(Turbotlib.data_dir).to eq('data')
-        expect(File.exists?('data')).to eq(true)
+        expect(Dir.exists?('data')).to eq(true)
       end
     end
 
@@ -28,7 +28,7 @@ describe Turbotlib do
 
       it 'returns "/data" and does not create the directory' do
         expect(Turbotlib.data_dir).to eq('/data')
-        expect(File.exists?('data')).to eq(false)
+        expect(Dir.exists?('data')).to eq(false)
       end
     end
   end
@@ -36,12 +36,12 @@ describe Turbotlib do
   describe '.sources_dir' do
     context 'when developing' do
       after do
-        FileUtils.rm_rf('sources')
+        Dir.rmdir('sources')
       end
 
       it 'returns "sources" and creates the directory' do
         expect(Turbotlib.sources_dir).to eq('sources')
-        expect(File.exists?('sources')).to eq(true)
+        expect(Dir.exists?('sources')).to eq(true)
       end
     end
 
@@ -63,7 +63,7 @@ describe Turbotlib do
 
         it 'returns "/sources" and does not create the directory' do
           expect(Turbotlib.sources_dir).to eq('/sources')
-          expect(File.exists?('/sources')).to eq(false)
+          expect(Dir.exists?('/sources')).to eq(false)
         end
       end
     end
