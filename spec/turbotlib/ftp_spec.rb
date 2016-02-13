@@ -71,7 +71,7 @@ describe Turbotlib::FTPDelegator do
 
       it 'retries' do
         delegator.chdir('BODACC')
-        expect(logdev.string).to match(/\A#{T} INFO turbot: login\n#{T} INFO turbot: chdir BODACC\n#{T} ERROR turbot: Operation timed out on TYPE I\n#{T} INFO turbot: login\n#{T} INFO turbot: chdir BODACC\n\z/)
+        expect(logdev.string).to match(/\A#{T} INFO turbot: login\n#{T} INFO turbot: chdir BODACC\n#{T} ERROR turbot: (?:Connection|Operation) timed out on TYPE I\n#{T} INFO turbot: login\n#{T} INFO turbot: chdir BODACC\n\z/)
       end
     end
   end
