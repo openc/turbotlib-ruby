@@ -1,6 +1,8 @@
+require 'spec_helper'
+
 describe Turbotlib do
   describe '.log' do
-    it 'should print message' do
+    it 'prints a message' do
       expect {
         Turbotlib.log('hi')
       }.to output("hi\n").to_stderr
@@ -13,12 +15,8 @@ describe Turbotlib do
         FileUtils.rm_rf('data')
       end
 
-      it 'should return data' do
+      it 'returns "data" and creates the directory' do
         expect(Turbotlib.data_dir).to eq('data')
-      end
-
-      it 'should create data directory' do
-        Turbotlib.data_dir
         expect(File.exists?('data')).to eq(true)
       end
     end
@@ -28,11 +26,8 @@ describe Turbotlib do
         allow(ENV).to receive(:[]).with('MORPH_URL').and_return('something')
       end
 
-      it 'should return /data' do
+      it 'returns "/data" and does not create the directory' do
         expect(Turbotlib.data_dir).to eq('/data')
-      end
-
-      it 'should not create data directory' do
         expect(File.exists?('data')).to eq(false)
       end
     end
@@ -44,7 +39,7 @@ describe Turbotlib do
         FileUtils.rm_rf('sources')
       end
 
-      it 'should return sources and create the directory' do
+      it 'returns "sources" and creates the directory' do
         expect(Turbotlib.sources_dir).to eq('sources')
         expect(File.exists?('sources')).to eq(true)
       end
@@ -56,7 +51,7 @@ describe Turbotlib do
       end
 
       context 'and not an admin' do
-        it 'should raise exception' do
+        it 'raises an error' do
           expect{Turbotlib.sources_dir}.to raise_error("Only admins are permitted to write to `sources_dir`")
         end
       end
@@ -66,11 +61,23 @@ describe Turbotlib do
           allow(Turbotlib).to receive(:is_admin?).and_return(true)
         end
 
-        it 'should return /sources and not create the directory' do
+        it 'returns "/sources" and does not create the directory' do
           expect(Turbotlib.sources_dir).to eq('/sources')
           expect(File.exists?('/sources')).to eq(false)
         end
       end
+    end
+  end
+
+  describe '.save_var' do
+    after do
+      FileUtils.rm_rf('data')
+    end
+
+    it 'saves and returns the variable' do
+      expect(Turbotlib.get_var('foo')).to eq(nil)
+      expect(Turbotlib.save_var('foo', 'bar')).to eq('bar')
+      expect(Turbotlib.get_var('foo')).to eq('bar')
     end
   end
 end
