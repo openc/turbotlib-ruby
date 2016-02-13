@@ -12,3 +12,5 @@ Bump the version in `lib/turbotlib/version.rb` according to the [Semantic Versio
 
     git commit lib/turbotlib/version.rb -m 'Release new version'
     rake release # requires Rubygems credentials
+
+Finally, [rebuild the Docker image](https://github.com/openc/morph-docker-ruby#readme).
