@@ -30,7 +30,7 @@ class Turbotlib
         __setobj__(ftp)
       end
 
-      exception_classes = [Errno::ETIMEDOUT, EOFError]
+      exception_classes = [Errno::ECONNRESET, Errno::ETIMEDOUT, EOFError]
       if Net.const_defined?(:ReadTimeout) # Ruby 2
         exception_classes << Net::ReadTimeout
       end
