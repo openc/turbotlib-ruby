@@ -20,6 +20,14 @@ describe Turbotlib::Processor do
       processor
       expect(Dir.exist?('output')).to eq(true)
     end
+
+    it 'uses sensible defaults' do
+      processor = Turbotlib::Processor.new
+      expect(processor.instance_variable_get(:@output_dir)).to eq(Turbotlib.data_dir)
+      logger = processor.instance_variable_get(:@logger)
+      expect(logger.level).to eq(Logger::WARN)
+      # would like to test more methods, but buried inside Faraday instances within instances
+    end
   end
 
   describe '#get' do

@@ -6,12 +6,12 @@ class Turbotlib
 
     def_delegators :@logger, :debug, :info, :warn, :error, :fatal
 
-    def initialize(output_dir, cache_dir, expires_in, level, logdev)
+    def initialize(output_dir= Turbotlib.data_dir, cache_dir=nil, expires_in=0, level='WARN', logdev=STDERR)
       @logger = Logger.new('turbot', level, logdev)
       @client = Client.new(cache_dir, expires_in, level, logdev)
 
       @output_dir = output_dir
-      FileUtils.mkdir_p(@output_dir)
+      FileUtils.mkdir_p(@output_dir) unless Dir.exist?(@output_dir)
     end
 
     def get(url)
