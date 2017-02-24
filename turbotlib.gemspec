@@ -20,11 +20,4 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "scraperwiki", "~> 3.0.2"
   gem.add_runtime_dependency "faraday", "~> 0.9.0"
   gem.add_runtime_dependency "retriable", "~> 2.0.2"
-
-  gem.add_development_dependency "activesupport", "~> 4.1.0"
-  gem.add_development_dependency "coveralls"
-  gem.add_development_dependency "faraday_middleware"
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec", "~> 3.4"
-  gem.add_development_dependency "webmock"
 end
