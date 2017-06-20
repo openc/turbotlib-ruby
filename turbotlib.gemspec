@@ -25,5 +25,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "faraday_middleware"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 3.4"
-  gem.add_development_dependency "webmock"
+  gem.add_development_dependency "webmock", "~> 2.2.0"
 end
